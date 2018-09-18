@@ -1,4 +1,4 @@
-fullstack-nanodegree-vm
+fullstack-foundations-course-udacity
 =============
 
-Common code for the Relational Databases and Full Stack Fundamentals courses
+Code for the Relational Databases and Full Stack Fundamentals courses
