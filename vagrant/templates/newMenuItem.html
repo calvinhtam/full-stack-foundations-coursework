@@ -1,0 +1,40 @@
+<html>
+    <head>
+        <link rel=stylesheet type=text/css
+              href="{{ url_for('static', filename='styles.css') }}">
+    </head>
+    <body>
+    <style>
+        h3 {display: inline;}
+        body {
+            background-image: url("https://cloud.githubusercontent.com/assets/9041401/6119508/7cbced14-b07e-11e4-9dbd-f01488203879.jpg");
+        }
+    </style>
+    <div class = 'pane'>
+        <h1>{{restaurant.name}}'s New Menu Item</h1>
+
+        <form action={{url_for('newMenuItem', restaurant_id=restaurant.id)}} method="post">
+            <dl>
+	        <dt>Name:</dt>
+		        <dd><input type ='text' size='30' name='name'></dd>
+            </dl>
+            <dl>
+	        <dt>Description:</dt>
+		        <dd><input type ='text' size='30' name='description'></dd>
+            </dl>
+            <dl>
+	        <dt>Price:</dt>
+		        <dd><input type ='text' size='30' name='price'></dd>
+            </dl>
+            <dt>Course:</dt>
+                <dd><input type ='radio' name='course' value='Appetizer'>Appetizer</dd>
+                <dd><input type ='radio' name="course" value="Entree" checked="checked">Entree</dd>
+                <dd><input type ='radio' name='course' value="Dessert">Dessert</dd>
+                <dd><input type ='radio' name="course" value="Beverage">Beverage</dd>
+
+            <input type="submit" value="Create">
+            <a href={{url_for('showMenu', restaurant_id=restaurant.id)}}>Cancel</a>
+        </form>
+    <div class = 'pane'>
+    </body>
+</html>

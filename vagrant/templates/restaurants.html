@@ -1,0 +1,40 @@
+<html>
+    <head>
+        <link rel=stylesheet type=text/css href="{{ url_for('static', filename='styles.css') }}">
+	</head>
+    <body>
+    <style>
+        h3 {display: inline;}
+        body {
+            background-image: url("https://cloud.githubusercontent.com/assets/9041401/6119508/7cbced14-b07e-11e4-9dbd-f01488203879.jpg");
+        }
+    </style>
+        <div class = 'pane'>
+        <h1>Restaurants Master List</h1>
+        <a href={{url_for('newRestaurant', restaurants=restaurants)}}>Add a New Restaurant</a>
+        </br></br>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <li><strong> {{message}} </strong></li>
+            {% endfor %}
+        </br>
+        {% endif %}
+        {% endwith %}
+        {% if not restaurants %}
+            <h3>You currently have no restaurants in your database.</h3>
+        {% endif %}
+        {% for i in restaurants %}
+            <h3>{{i.name}}</h3>
+            </br>
+            <a href={{url_for('showMenu', restaurant_id=i.id)}}>Show Menu</a>
+            </br>
+            <a href={{url_for('editRestaurant', restaurant_id=i.id)}}>Edit</a>
+            </br>
+            <a href={{url_for('deleteRestaurant', restaurant_id=i.id)}}>Delete</a>
+            </br>
+            </br>
+        {% endfor %}
+        </div>
+    </body>
+</html>

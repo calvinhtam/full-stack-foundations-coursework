@@ -21,15 +21,11 @@ class webserverHandler(BaseHTTPRequestHandler):
 
                 output = ""
                 output += "<html><body>"
-
                 output += "<h1>Hello!</h1><a href = '/hola'> Spanish Version</a>"
-                #<a href = '/hola'> Spanish Version</a><
-
                 output += "<form method='POST' enctype='multipart/form-data' action='/hello'>"
                 output += "<h2>What would you like me to say back to you?</h2>"
-                output += "<input name='message' type='text'>"
+                output += "<input name='repeatBackMessage' type='text'>"
                 output += "<input type='submit' value = 'Submit' </form>"
-
                 output += "</body></html>"
                 self.wfile.write(output.encode('utf-8'))
                 print(output)
@@ -41,13 +37,10 @@ class webserverHandler(BaseHTTPRequestHandler):
 
                 output = ""
                 output += "<html><body>"
-
                 output += "<h1>&#161Hola!</h1><a href = '/hello'> English Version</a>"
-                #<a href = '/hello'> English Version</a><
-
-                output += "<form method='POST' enctype='multipart/form-data' action='/hello'>"
+                output += "<form method='POST' enctype='multipart/form-data' action='/hola'>"
                 output += "<h2>What would you like me to say back to you?</h2>"
-                output += "<input name='message' type='text'>"
+                output += "<input name='repeatBackMessage' type='text'>"
                 output += "<input type='submit' value='Submit'></form>"
 
                 output += "</body></html>"
@@ -167,24 +160,56 @@ class webserverHandler(BaseHTTPRequestHandler):
                 self.send_header('Location', '/restaurants')
                 self.end_headers()
                 return
+            elif self.path.endswith("/hello"):
+                self.send_response(301)
+                self.send_header('Content-type', 'text/html')
+                self.end_headers()
+                ctype, pdict = cgi.parse_header(self.headers.get('content-type'))
+                pdict['boundary'] = bytes(pdict['boundary'], "utf - 8")
+                if ctype == 'multipart/form-data':
+                    fields = cgi.parse_multipart(self.rfile, pdict)
+                    messagecontent = fields.get('repeatBackMessage')
+                print(messagecontent[0])
 
-            """ 
-            #hello code output
-            output = ""
-            output += "<html><body>"
-            output += " <h2> Okay, how about this: </h2>"
-            self.wfile.write(bytes(output, "UTF-8"))
-            self.wfile.write(messagecontent[0])
-            output = ""
-            output += "<form method='POST' enctype='multipart/form-data' action='/hello'>"
-            output += "<h2>What would you like me to say back to you?</h2>"
-            output += "<input name='message' type='text'>"
-            output += "<input type='submit' value = 'Submit' </form>"
+                output = ""
+                output += "<html><body>"
+                output += " <h2> Okay, how about this: </h2>"
+                self.wfile.write(bytes(output, "UTF-8"))
+                self.wfile.write(messagecontent[0])
+                output = ""
+                output += "<form method='POST' enctype='multipart/form-data' action='/hello'>"
+                output += "<h2>What would you like me to say back to you?</h2>"
+                output += "<input name='repeatBackMessage' type='text'>"
+                output += "<input type='submit' value = 'Submit' </form>"
+                output += "</body></html>"
+                self.wfile.write(output.encode('utf-8'))
+                print(output)
+                return
+            elif self.path.endswith("/hola"):
+                self.send_response(301)
+                self.send_header('Content-type', 'text/html')
+                self.end_headers()
+                ctype, pdict = cgi.parse_header(self.headers.get('content-type'))
+                pdict['boundary'] = bytes(pdict['boundary'], "utf - 8")
+                if ctype == 'multipart/form-data':
+                    fields = cgi.parse_multipart(self.rfile, pdict)
+                    messagecontent = fields.get('repeatBackMessage')
+                print(messagecontent[0])
 
-            output += "</body></html>"
-            self.wfile.write(output.encode('utf-8'))
-            print(output)
-            """
+                output = ""
+                output += "<html><body>"
+                output += " <h2> Okay, how about this: </h2>"
+                self.wfile.write(bytes(output, "UTF-8"))
+                self.wfile.write(messagecontent[0])
+                output = ""
+                output += "<form method='POST' enctype='multipart/form-data' action='/hola'>"
+                output += "<h2>What would you like me to say back to you?</h2>"
+                output += "<input name='repeatBackMessage' type='text'>"
+                output += "<input type='submit' value = 'Submit' </form>"
+                output += "</body></html>"
+                self.wfile.write(output.encode('utf-8'))
+                print(output)
+                return
 
 
         except Exception as e:

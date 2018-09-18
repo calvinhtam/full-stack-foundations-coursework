@@ -1,0 +1,20 @@
+<html>
+    <head>
+        <link rel=stylesheet type=text/css
+              href="{{ url_for('static', filename='styles.css') }}">
+    </head>
+    <body>
+    <style>
+        body {
+            background-image: url("https://cloud.githubusercontent.com/assets/9041401/6119508/7cbced14-b07e-11e4-9dbd-f01488203879.jpg");
+        }
+    </style><div class = 'pane'>
+        <h1>Are you sure you want to delete {{item.name}}?</h1>
+        <form action={{url_for('deleteMenuItem', restaurant_id=restaurant_id, menu_id=menu_id)}}
+              method="post">
+            <input type="submit" value="Delete">
+            <a href={{url_for('showMenu', restaurant_id=restaurant_id)}}>Cancel</a>
+        </form>
+    </div>
+    </body>
+</html>

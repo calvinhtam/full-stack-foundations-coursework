@@ -352,7 +352,7 @@ menuItem2 = MenuItem(name="Cachapa", description="Golden brown, corn-based Venez
 session.add(menuItem2)
 session.commit()
 
-
+# Menu for State Bird Provisions
 restaurant1 = Restaurant(name="State Bird Provisions")
 session.add(restaurant1)
 session.commit()
@@ -363,17 +363,17 @@ menuItem1 = MenuItem(name="Chantrelle Toast", description="Crispy Toast with Ses
 session.add(menuItem1)
 session.commit()
 
-menuItem1 = MenuItem(name="Guanciale Chawanmushi", description="Japanese egg custard served hot with spicey Italian Pork Jowl (guanciale)",
+menuItem2 = MenuItem(name="Guanciale Chawanmushi", description="Japanese egg custard served hot with spicey Italian Pork Jowl (guanciale)",
                      price="$6.95", course="Dessert", restaurant=restaurant1)
 
-session.add(menuItem1)
+session.add(menuItem2)
 session.commit()
 
 
-menuItem1 = MenuItem(name="Lemon Curd Ice Cream Sandwich", description="Lemon Curd Ice Cream Sandwich on a chocolate macaron with cardamom meringue and cashews",
+menuItem3 = MenuItem(name="Lemon Curd Ice Cream Sandwich", description="Lemon Curd Ice Cream Sandwich on a chocolate macaron with cardamom meringue and cashews",
                      price="$4.25", course="Dessert", restaurant=restaurant1)
 
-session.add(menuItem1)
+session.add(menuItem3)
 session.commit()
 
 
